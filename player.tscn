@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwtnf12u8rmyl"]
+
+[ext_resource type="Script" uid="uid://bemt0ak84qk6k" path="res://character_body_2d.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://1sdv208ydpj6" path="res://art/bubbleShot.png" id="2_i3pqv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lp46o"]
+radius = 12.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wvcbu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_i3pqv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(595, 330)
+script = ExtResource("1_onrkg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CircleShape2D_lp46o")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+position = Vector2(0, -1)
+scale = Vector2(0.32, 0.32)
+sprite_frames = SubResource("SpriteFrames_wvcbu")
