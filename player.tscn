@@ -36,21 +36,22 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Node2D" type="Node2D"]
-position = Vector2(2, 0)
-
-[node name="Player" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D"]
 position = Vector2(-1, -3)
 collision_layer = 6
-collision_mask = 9
 script = ExtResource("1_onrkg")
 PowerupX = ExtResource("2_sweqy")
 PowerupB = ExtResource("2_sweqy")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_lp46o")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, 2)
 sprite_frames = SubResource("SpriteFrames_wvcbu")
+
+[node name="DebuffTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="DebuffTimer" to="." method="_on_debuff_timer_timeout"]

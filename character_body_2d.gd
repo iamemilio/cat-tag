@@ -1,8 +1,10 @@
 extends CharacterBody2D
 
-const SPEED = 700.0
+
 const JUMP_VELOCITY = -1200.0
 const alloted_jumps = 1
+const default_speed = 700
+var SPEED = default_speed
 var last_direction = 1.0
 var jumps = alloted_jumps
 @export var PowerupX: Powerup
@@ -33,6 +35,13 @@ func wall_jump(speed, delta, dir):
 	
 	var target_velocity = input_direction * (SPEED + 100) 
 	velocity = velocity.lerp(target_velocity, speed * delta)
+
+func slow():
+	var debuff_timer = $DebuffTimer
+	SPEED = 450
+	debuff_timer.start(2.5)
+
+
 
 func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("Joystick_Left", "Joystick_Right")
@@ -85,3 +94,8 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
+
+
+func _on_debuff_timer_timeout() -> void:
+	SPEED = default_speed
+	jumps = alloted_jumps
