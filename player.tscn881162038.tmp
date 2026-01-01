@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bemt0ak84qk6k" path="res://character_body_2d.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://1sdv208ydpj6" path="res://art/bubbleShot.png" id="2_i3pqv"]
-[ext_resource type="Resource" uid="uid://by34a47td4ogi" path="res://trap_power_resource.tres" id="2_sweqy"]
 [ext_resource type="Texture2D" uid="uid://dnqfekq5n7lh3" path="res://art/bubblewall.png" id="3_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://dn2tdl08xch0a" path="res://art/bubblewall_rotated.png" id="4_hqtel"]
+[ext_resource type="Script" uid="uid://cb2j1w6tgcbly" path="res://Powerup.gd" id="5_sweqy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lp46o"]
 radius = 37.054016
@@ -38,14 +38,11 @@ animations = [{
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(2, 0)
+script = ExtResource("5_sweqy")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(-1, -3)
-collision_layer = 6
-collision_mask = 9
 script = ExtResource("1_onrkg")
-PowerupX = ExtResource("2_sweqy")
-PowerupB = ExtResource("2_sweqy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(0, 1)
@@ -54,3 +51,4 @@ shape = SubResource("CircleShape2D_lp46o")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 position = Vector2(-1, 2)
 sprite_frames = SubResource("SpriteFrames_wvcbu")
+animation = &"on wall rotated"
